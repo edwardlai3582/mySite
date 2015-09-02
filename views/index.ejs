@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+   <link href="stylesheets/main.css" rel="stylesheet" />
+   <link href="stylesheets/yesterday.css" rel="stylesheet" />
+   <link href='http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps:400,700' rel='stylesheet' type='text/css'>
+   <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400italic' rel='stylesheet' type='text/css'>
+
+   <script src="javascripts/vendor/angular.min.js"></script>
+   <script src="javascripts/vendor/angular-route.min.js"></script>
+   <script src="javascripts/vendor/d3.min.js"></script>
+   <script>
+      
+   </script>
+  </head>
+  <body ng-app="MyApp" >
+
+    <div class="header" id="headithard">
+      <div class="intheheader" >
+        <a href='/' id='myHead'><img  src="./images/me.jpg"></a>
+          <a href='/'><h1>Edward Lai</h1></a>
+        <h2> "I never sleep, cause sleep is the cousin of death"</h2>
+
+		<div class="menu-container">
+			<ul class="menu">
+				<li class='litab'><a href="#/yesterday"><img src="images/yesterday.jpg"></a></li>
+				<li class='litab'><a class='qq' href="#">PROJECTS</a>
+					<!-- -->
+					<ul>
+						<li><a href="#"> p1</a></li>
+						<li><a href="#"> p2 </a></li>
+						<li><a href="#"> p3</a></li>
+						<li><a href="#"> p4</a></li>
+					</ul>
+					<!-- -->
+				</li>
+				<li class='litab'><a  class='qq' href="#">AboutMe</a>
+					<!-- -->
+					<ul>
+						<li><a href="#"> introduce</a></li>
+						<li><a href="#"> resume</a></li>
+					</ul>
+					<!-- -->
+				</li>
+
+			</ul>
+		</div>
+	  </div>
+    </div>
+   
+     
+   <div class="main">
+      <div class="container">
+        <div ng-view></div>
+      </div>
+    </div>
+     
+    
+    <!-- Modules -->
+    <script src="javascripts/angularApp.js"></script>
+
+    <!-- Controllers -->
+    <script src="javascripts/controllers/yesterdayController.js"></script>
+
+    <!-- Directives -->
+    <script src="javascripts/directives/d3Directive.js"></script>
+    <script src="javascripts/directives/ytDirective.js"></script>
+    
+
+    <!-- Services -->
+    <script src="javascripts/factories/yesterdayFactory.js"></script>
+    
+    <!-- Other -->
+    <script type="text/javascript">
+    var div_menu = document.getElementById('headithard'); 
+    window.onscroll = function (e) {  
+        if (div_menu)
+            div_menu.style.top = window.pageYOffset + 'px';
+    }   
+    </script>
+  </body>
+</html>  
