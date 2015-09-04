@@ -1,36 +1,42 @@
 app.controller('yesterdayController', ['$scope','yFac', function($scope,yFac) {
   // Your code here
-    
+  $scope.submitted = false;  
     
   $scope.showform=false;  
  //Function To Display Popup
 $scope.div_show=function(){
-$scope.showform=true;    
+  $scope.showform=true;    
 }
 //Function to Hide Popup
 $scope.div_hide=function(){
-    $scope.showform=false; 
+  $scope.showform=false; 
   $scope.artist='';
   $scope.name='';
   $scope.starttime='';
   $scope.endtime='';
-  $scope.link='';    
+  $scope.link=''; 
+  $scope.submitted = false;    
 } 
     
 $scope.addCover=function() {
+  $scope.submitted = true;
   if($scope.artist==='' || $scope.name === ''|| $scope.starttime === ''
      || $scope.endtime === ''||!$scope.artist||!$scope.name||!$scope.starttime||!$scope.endtime) { 
-    alert("form not complete");  
+    //alert("form not complete");  
     return; 
   }
-  //post    
-  $scope.covers.push({ artist: $scope.artist,
+  //post
+///*    
+  yFac.upload({
+  artist: $scope.artist,
   name: $scope.name,
   starttime: $scope.starttime,
   endtime: $scope.endtime,
   link: $scope.link,
-  pic: './images/me.jpg'                     
-  });
+  pic: $scope.pic
+  }); 
+//*/
+  //yFac.upload($scope.pic);  
   //    
   $scope.div_hide();
 } 

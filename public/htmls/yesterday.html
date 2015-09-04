@@ -27,6 +27,17 @@
   </div>
 </div>
 
+<!--
+<div>
+<form action="/covers" method="POST" enctype="multipart/form-data">
+  Select an image to upload:
+  <input type="file" name="userPhoto"> 
+  <input type="text" name="text"> 
+  <input type="submit" value="Upload Image" name="submit">
+</form>    
+</div>
+-->
+
 <!-- Popup Div Starts Here -->
 <div id="abc" ng-show="showform">
 
@@ -40,12 +51,35 @@
     </div>
 </div>
     
-<form id="formindiv" ng-submit="addCover()" ng-cloak>
-        <input ng-model="artist"  placeholder="artist" type="text">
-        <input ng-model="name" placeholder="cover's name" type="text">
-        <input ng-model="starttime" placeholder="appear time (in second)" type="text">
-        <input ng-model="endtime" placeholder="disappear time (in second)" type="text">
-        <textarea ng-model="link" placeholder="link"></textarea>
+<form name="formindiv" id="formindiv" ng-submit="addCover()" ng-cloak novalidate>
+        <input ng-model="artist"  name="artist" placeholder="artist" type="text" required>
+          <div ng-messages="formindiv.artist.$error" ng-if="submitted">
+            <div ng-message="required">You forgot to enter artist...</div>
+          </div>
+          
+        <input ng-model="name" name="name" placeholder="cover's name" type="text" required>
+          <div ng-messages="formindiv.name.$error" ng-if="submitted">
+            <div ng-message="required">You forgot to enter name...</div>
+          </div>
+          
+        <input ng-model="starttime" name="starttime" placeholder="appear time (in second)" type="number" min="0" max="331" required> 
+           <div ng-messages="formindiv.starttime.$error" ng-if="submitted" ng-messages-multiple>
+            <div ng-message="required">You forgot to enter starttime...</div>
+            <div ng-message="max">Too big!</div>
+          </div>
+        
+        <input ng-model="endtime" name="endtime" placeholder="disappear time (in second)" type="number" ng-min="starttime" max="331" required>
+          <div ng-messages="formindiv.endtime.$error" ng-if="submitted" ng-messages-multiple>
+            <div ng-message="required">You forgot to enter endtime...</div>
+            <div ng-message="min">Too small!</div>
+            <div ng-message="max">Too big!</div>
+          </div>
+                  
+        <textarea ng-model="link" placeholder="link" type="url"></textarea>
+           <div ng-messages="formindiv.endtime.$error" ng-if="submitted">
+            <div>Not valid url!</div>
+           </div>
+          <input type="file" file-model="pic" name="pic"> 
         <br>
         <!--<input type="submit" value="SUBMIT" />-->
         <button id="submitbutton" type="submit">ADD</button> 
@@ -53,70 +87,4 @@
 
 </div>
 <!-- Popup Div Ends Here -->
-
-  
-<!--
-    <div class="YTcontainer">
-        <div class="YTplayer" id="player"></div>
-        <div class="showCover">
-        <p>wwwwwwww</p>
-         <p id='showtime'></p>
-
-        </div>
-    </div> 
-    
-    <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '260',
-          width: '427',
-          videoId: 'b8LVofHWGUU',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-         
-      }
-
-      
-  
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        //event.target.playVideo();
-      }
-
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-      var done = false;
-        
-      function onPlayerStateChange(event) {
-          
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-         var qq=document.getElementById('showtime'); 
  
-       
-            setInterval(function(){
-            
-            qq.innerHTML = player.getCurrentTime();
-          },100);   
-        }
-        
-      }
-      function stopVideo() {
-        player.stopVideo();
-      }
-    </script> 
-    
- -->   
