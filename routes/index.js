@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var multer  = require('multer');
 var upload = multer({ 
-    dest: 'uploads/',
+    dest: 'public/images/',
     rename: function (fieldname, filename) {
       return filename;
     },
@@ -29,6 +29,15 @@ router.post('/covers', upload.single('pic'), function (req, res, next) {
 console.log(req.body); 
 console.log("/////////"); 
 console.log(req.file); //你上傳的資料就會變成文字紀錄於你的req.file裡頭囉
+
+req.body.pic="./images/"+req.file.filename;        
+var cover= new Cover(req.body);
+cover.save(function(err, cover){
+    if(err){ return next(err); }
+
+    res.json(cover);
+});
+    
 })
 
 /*

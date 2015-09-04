@@ -10,12 +10,11 @@ app.factory("yFac", ['$http',function($http){
     });
   }; 
   
-  o.upload = function(file){//, uploadUrl){
+  o.upload = function(file){
         var fd = new FormData();
         for (var key in file) {
           fd.append(key, file[key]);  
         }
-        //fd.append('pic', file);
         $http.post('/covers', fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
