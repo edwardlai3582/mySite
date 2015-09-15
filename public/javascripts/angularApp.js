@@ -3,6 +3,10 @@ var app = angular.module('MyApp', ['ngRoute','ngMessages']);
 
 app.config(function ($routeProvider) {
   $routeProvider
+    .when('/firstpage', {
+      controller: "firstpageController",
+      templateUrl: "htmls/firstpage.html"
+    })
     .when('/yesterday', {
       controller: "yesterdayController",
       templateUrl: "htmls/yesterday.html",
@@ -12,8 +16,16 @@ app.config(function ($routeProvider) {
         }]
       }
     })
+    .when('/projects', {
+      controller: "projectsController",
+      templateUrl: "htmls/projects.html"
+    })
+    .when('/aboutme', {
+      controller: "aboutmeController",
+      templateUrl: "htmls/aboutme.html"
+    })
     .otherwise({
-      redirectTo: '/'
+      redirectTo: '/firstpage'
     });
 });
 

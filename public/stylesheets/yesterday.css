@@ -7,6 +7,14 @@
     margin: auto;
 }
 
+.YTcontainer {
+     position: relative; 
+    top:10px;
+    text-align: center;
+      width: 100%;   
+    margin: 0 auto;
+}
+
 .YTcontrol {
   position:relative;
   top:40px;    
@@ -50,20 +58,70 @@ circle:hover{
 }
 
 
-#abc {
-width:300px;
-height:240px;
-opacity:.95;
-top:120px;
-right:10px;
+.YTcontrol{
+   z-index: 1;
+}
 
-position:fixed;
-background-color:white;
-overflow:auto;
+#outshow{
+position: relative; 
     
+    text-align: center;
+     
+    margin: auto;
+}
+
+#showcover{
+   display: inline-block;
+   margin: auto;
+    
+}
+
+.coverclass{
+  width: 260px;    
+  background-color:black;    
+  font-size: 20px;
+  color: aliceblue;
+  font-weight:bold;
+  font-family:monospace;    
+  text-transform: uppercase; 
+
   border-style: solid solid solid solid;
     border-width: 4px;
-    border-radius:13px;    
+    border-radius:13px;
+    
+    margin-left: 3px;
+    margin-right: 3px;
+
+    float: left;
+    text-align: center;
+    
+}
+
+.coverclass .albumname{
+  font-size: 12px;
+  color: aliceblue;
+  font-weight:normal;
+  font-family:fantasy;
+    
+}
+
+
+
+
+#abc {
+  width:250px;
+  height:265px;
+  opacity:.95;
+  top:110px;
+  right:10px;
+
+  position:fixed;
+  background-color:white;
+  overflow:auto;
+    
+  border-style: solid solid solid solid;
+  border-width: 4px;
+  border-radius:13px;    
 }
 
 #formfirst{
@@ -74,55 +132,67 @@ overflow:auto;
 #formfirst #formtitlediv{
     float:left;
     height:40px;
- width:49%;    
+ width:60%;    
  position: relative;
    
 }
 #formfirst #formtitlediv p{
- position: relative;    
+  position: relative;    
   width: 90%;  
-    left: 13px;  
+  left: 13px;  
   font-family: 'Libre Baskerville', serif;
   font-style: italic;
   font-size: 14px;
 }
 
 #formclosediv {
-    width:50%; 
-    height:40px;
-    float:left;
-  position: relative;    
-      
+  width:40%; 
+  height:55px;
+  float:left;
+  position: relative;          
 }
 
 #formclosediv #close{
-    
-    
   position: relative;  
-    float:right;
-  top:2px; 
-    
+  float:right;
+  top:2px;
+  right:2px;    
+}
+
+#formindiv input, #formindiv textarea{
+  position: relative;
+    left:10px;
+    font-family:sans-serif;
+    width:170px;
+    margin-bottom: 6px;
+}
+
+#formindiv #link{
+  margin-top:7px;
+  height: 34px;    
 }
 
 
 
-#submitbutton{
+#formindiv #submitbutton{
   position: relative;  
     
   text-align: center;    
-  width:50px;    
+  width:50px;
+  left:10px;    
+  margin-top: 7px;    
   cursor: pointer;
     
-    background-color:black;    
+  background-color:black;    
   font-size: 16px;
   color: aliceblue;
   font-weight:bold;
   font-family:monospace;    
   text-transform: uppercase; 
   
-    padding:1px 1px 1px 1px;
-    border: solid black 0px;
-    border-radius:10px;    
+  padding:1px 1px 1px 1px;
+  border: solid black 0px;
+  border-radius:10px;    
 }
 
 #submitbutton:hover {

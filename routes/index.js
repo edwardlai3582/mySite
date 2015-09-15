@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var multer  = require('multer');
+var nodemailer = require('nodemailer');
+
 var upload = multer({ 
     dest: 'public/images/',
     rename: function (fieldname, filename) {
@@ -25,32 +27,53 @@ router.get('/covers', function(req, res, next) {
 });
 
 router.post('/covers', upload.single('pic'), function (req, res, next) {  
-//請注意，這裡的userPhoto要跟你上傳欄位的name相符合，否則會一直出現 field unexpected的訊息，非常重要，之前我死在這邊很多次 ：(
-console.log(req.body); 
-console.log("/////////"); 
-console.log(req.file); //你上傳的資料就會變成文字紀錄於你的req.file裡頭囉
+    console.log(req.body); 
+    console.log("/////////"); 
+    console.log(req.file);
 
-req.body.pic="./images/"+req.file.filename;        
-var cover= new Cover(req.body);
-cover.save(function(err, cover){
-    if(err){ return next(err); }
-
-    res.json(cover);
+    req.body.pic="./images/"+req.file.filename;        
+    var cover= new Cover(req.body);
+    cover.save(function(err, cover){
+        if(err){ return next(err); }
+        res.json(cover);
+    });   
 });
-    
-})
 
-/*
-router.post('/posts', function(req, res, next) {
-  var post = new Post(req.body);
 
-  post.save(function(err, post){
-    if(err){ return next(err); }
-
-    res.json(post);
+router.post('/mail', function(req, res, next){
+     
+  var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'edwardlai3582@gmail.com', // Your email id
+            pass: 'dragonash' // Your password
+        }
   });
+    
+    //Mail options
+  var mailOpts = {
+      //from: req.body.name + ' &lt;' + req.body.mailaddress + '&gt;', //grab form data from the request body object
+      to: 'edwardlai3582@gmail.com',
+      subject: 'Website contact form',
+      text: 'from: '+req.body.name + '\n'+'address: ' + req.body.mailaddress + '\n'+'message: '+req.body.message
+  };
+  console.log('wtf');
+  console.log(req.body);     
+    
+  transporter.sendMail(mailOpts, function (error, response) {
+      //Email not sent
+      if (error) {
+          console.log(error);
+          res.json(error);
+      }
+      //Yay!! Email sent
+      else {
+          console.log("sent");
+          res.json("thanks");
+      }
+      transporter.close();
+  });    
 });
-*/
 
-
+///////////////////////////////////////////////////
 module.exports = router;

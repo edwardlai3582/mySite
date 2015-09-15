@@ -1,5 +1,5 @@
 html { 
-  background: url('../images/sky2.jpg') no-repeat center center fixed; 
+  background: url('../images/siteuse/newsky2.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -7,126 +7,41 @@ html {
   background-size: cover;
 }
 
-#outshow{
-position: relative; 
-    
-    text-align: center;
-     
-    margin: auto;
-}
 
-#showcover{
-   display: inline-block;
-   margin: auto;
-    
-}
-
-.coverclass{
-  width: 260px;    
-  background-color:black;    
-  font-size: 20px;
-  color: aliceblue;
-  font-weight:bold;
-  font-family:monospace;    
-  text-transform: uppercase; 
-
-  border-style: solid solid solid solid;
-    border-width: 4px;
-    border-radius:13px;
-    
-    margin-left: 3px;
-    margin-right: 3px;
-
-    float: left;
-    text-align: center;
-    
-}
-
-.coverclass .albumname{
-  font-size: 12px;
-  color: aliceblue;
-  font-weight:normal;
-  font-family:fantasy;
-    
-}
 
 body{
-   
-  min-width:1263px;
-   
+  position: relative;
+  /*min-width:1098px;*/
+   width:100%;
   height: 100%;
  margin: 0;
     padding: 0;
     border: 0;
  background-color:#ECD8AC;
-   
    z-index: 0;
-}
-
-
-
-body .main {
-    position: relative;
-    top: 80px;
-    
-    z-index: 0;
-    padding: 40px 0;
-}
-
-body  .main .container {
-    position: absolute;
-    top: 0px;
-	width: 100%;
-    z-index: 1;
+   overflow-y: auto;    
 }
 
 a{
   text-decoration: none;
 }
 
-
-.YTcontainer {
-     position: relative; 
-    top:10px;
-    text-align: center;
-      width: 100%;   
-    margin: 0 auto;
-}
-
-
-
-
-
-
-
-
-.container-fluid {
-  padding-left: 0;
-  padding-right: 0;
-}
-
 .header {
-   position:absolute;  
+  position:fixed;  
   background-color: black;
-    /*min-width:1263px;*/
-    
-    /*1263px;*/
-    width: 100%;
-    height:75px;
-    top: 0px;
-    
-  z-index: 10;
+  /*min-width:1098px;*/
+  width: 100%;
+  height:75px;
+  top: 0px;
   
-    display: inline-block;
-    
+  z-index: 50;
   
-    
+  display: inline-block;  
 }
 
-.header .intheheader{
-  position: relative;
+.intheheader{
+  position: absolute;
     background-color: black;
-  min-width:1263px; 
     width:100%;
     height:100%;
     line-height: 0px;
@@ -136,68 +51,104 @@ a{
     border-color:white;
 }
 
-.intheheader .container-fluid {
-  position: absolute;    
-}
-
 .intheheader  img {
   width: 75px;
   height: 75px;    
 }
 
 .intheheader #myHead {
+  height: 100%;
+    width: 75px;
   float: left;   
   margin: 0;
-  padding: 0px 0 0px 0px;
 }
 
-.intheheader h1 {
-  float: left;   
-  color: #76D6C0;
+.intheheader #headerh1div {
+  float: left; 
+  height: 100%;     
+    display: block;  
+    width:130px; 
+}
+
+@media all and (max-width: 530px) {
+  .intheheader #headerh1div {    
+    display: none;
+  }
+}
+
+
+#headerh1div div{
+  position: absolute;
+  bottom:30%;
+  height:40%;    
+  width:130px; 
+   padding-left:5px;    
+}
+
+#headerh1div div h1{    
+  color: rgb(172,207,209);/*#76D6C0;*/
   font-family: 'Oleo Script Swash Caps', cursive;
   font-size: 25px;
-   position: relative; 
-  margin: 0;
-  padding: 35px 0 10px 0px;
 }
 
 
-.intheheader h2 {
+.intheheader #headerh2div {
+  float: left; 
+  height: 100%; 
+  display: block;     
+}
+/*
+@media all and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  .intheheader #headerh2div {    
+    display: none;
+  }
+}
+*/
+
+#headerh2div div{
+  position: absolute;
+  bottom:29%;
+  height:35%;
+  width: 380px;
+  overflow: hidden;    
+   
+}
+
+#headerh2div div h2{
+  position: absolute;    
   color: white;
   font-family: 'Libre Baskerville', serif;
   font-style: italic;
   font-size: 16px;
-    position: absolute;
-    padding: 22px 0px 10px 0px;
-    margin-left: 210px;
-    margin-right: 510px;
-    width: 370px;
+  
+  transition: all 0.3s ease-in-out;      
+   
 }
 
 
+#neversleep{   
+      
+}
 
-.intheheader .menu-container{
-      position: relative;
-    
+#dilla{   
+  
+}
+
+.intheheader .menu-container{    
     float: right;
     /*left: 938px;*/
-  width: 325px; 
     
-  height: 100%;
-    
+    height: 100%;
     /*min-width: 310px;*/
-  
     /*margin:0 auto;*/
-    
 }
 
 
 .menu-container .menu{
-    position: absolute;
-    float: right;
-    width:100%;
-    height:100%;
     
+    height:100%;
     padding: 0;
     margin: 0;
 }
@@ -205,58 +156,92 @@ a{
 .menu-container .menu .litab { 
     list-style:none; 
     position: relative;
-    float:left;
-    /**/
+    float:right;
     line-height: 100px;
-    /**/
     /*border-right:1px solid #757575;*/ 
-    height: 100%;
-    width:33%; 
+    height:75px;
+    
     
     text-align:center; 
-
+    display: block;
     -webkit-transition:all .15s ease-in; 
-    transition:all .15s linear;
+    transition:all .15s linear;    
+}
+
+#ytab {    
+  width:70px;
+  overflow: hidden;  
+}
+
+
+#ytab img{ 
+  position: relative;
+  top: 3px;  
+  width:70px;
+  height: auto; 
+  transition: all 0.5s ease-in-out;  
+}
+
+#ytab img:hover{    
+  transform: rotate(360deg);
+}
+
+#ptab {    
+  width:110px;
+  margin-left: 10px;  
+}
+
+#atab {    
+  width:90px;
+  margin-left: 10px;
+  margin-right: 10px;  
+}
+
+@media all and (max-width: 400px) {
+  #ytab {    
+    display: none;
+  }
+  #ptab {    
+    margin-left: 0px;
+    width:90px;  
+  }
+  #atab {    
+    margin-left: 0px;
+    margin-right: 0px;  
+  }
     
-    
+  #ptab .qq{
+    font-size:16px; 
+  } 
+  #atab .qq{
+    font-size:16px; 
+  }     
 }
 
 .menu-container .menu .litab a{
-    height:75px;
     list-style:none; 
     color: white; 
-    font-size:20px; 
     font-family:arial; 
-    /**************link not only string but whole blcok*/
     display: block;
-    /************************/
-
 }
 
 .menu-container .menu .litab .qq{
-    width: 100%;
-   
-    list-style:none; 
     color: white; 
     font-size:20px; 
     font-family:arial; 
-
 }
 
-.menu-container .menu li a  img {
-  width: 70px;
-  height: 70px;    
+.menu-container .menu .litab .qq:hover{
+  color: rgb(172,207,209);
 }
 
 /** add fo second level menu  **/
 .menu-container .menu li  > ul{ 
     margin-top:-1px; 
-    
-    
-    
     opacity:0 ; 
     height:0px;
 }
+
 .menu-container .menu li > ul li{ 
     list-style:none; 
     margin-left: -39px;
@@ -276,11 +261,13 @@ a{
     /*check this */
     line-height: 25px;
 }
+
 .menu-container .menu li ul  li a{
     margin-top:-88px;
     font-size:0px;
     height:0px;
 }
+
 /** hovering the submenu*/
 .menu-container .menu li:hover > ul {opacity:1; }
 .menu-container .menu li:hover  > ul  li{ 
@@ -291,11 +278,13 @@ a{
     /*padding:5px 5px;*/
     background: black;
 }
+
 .menu-container .menu li:hover  > ul  li a{ 
     margin-top:0px;
     font-size:12px; 
     color: white;
 }
+
 /**Apply extra style for submenu*/
 .menu-container .menu li:hover  > ul  li:hover a{ 
     color:black; 
@@ -303,6 +292,7 @@ a{
     font-size:20px;
     line-height:35px; 
 }
+
 .menu-container .menu li:hover  > ul  li:hover{  
     background: #76D6C0;
     
@@ -311,5 +301,18 @@ a{
     
 }
 
-
 /******************************************************************/
+body .main {
+    position: relative;
+    top: 80px;
+    width:100%;
+    
+}
+
+body .main .container {
+    position: absolute;
+    height: 100%;
+    top: 0px;
+	width: 100%;
+}
+

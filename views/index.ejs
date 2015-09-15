@@ -1,54 +1,76 @@
 <!doctype html>
 <html>
   <head>
-   <link href="stylesheets/main.css" rel="stylesheet" />
-   <link href="stylesheets/yesterday.css" rel="stylesheet" />
+   <meta name="viewport" content="width=device-width"/>     
+  
    <link href='http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps:400,700' rel='stylesheet' type='text/css'>
    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400italic' rel='stylesheet' type='text/css'>
+   <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+   <link href='https://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
 
+   <link href="stylesheets/main.css" rel="stylesheet" />
+   <link href="stylesheets/firstpage.css" rel="stylesheet" />
+   <link href="stylesheets/yesterday.css" rel="stylesheet" />
+   <link href="stylesheets/projects.css" rel="stylesheet" />
+   <link href="stylesheets/aboutme.css" rel="stylesheet" />
+   <link href="stylesheets/slide.css" rel="stylesheet" />
+   <link href="stylesheets/theater.css" rel="stylesheet" />
+  
    <script src="javascripts/vendor/angular.min.js"></script>
    <script src="javascripts/vendor/angular-route.min.js"></script>
    <script src="javascripts/vendor/angular-messages.min.js"></script>
    <script src="javascripts/vendor/d3.min.js"></script>
-   <script>
-      
-   </script>
+
   </head>
+  
   <body ng-app="MyApp" >
 
-    <div class="header" id="headithard">
+    <div class="header" id="headithard" ng-controller="headerController">
       <div class="intheheader" >
-        <a href='/' id='myHead'><img  src="./images/me"></a>
-          <a href='/'><h1>Edward Lai</h1></a>
-        <h2> "I never sleep, cause sleep is the cousin of death"</h2>
+          <a href='#/firstpage' id='myHead'>
+            <img src="./images/siteuse/me.jpg" ng-mouseover="dillashow()" ng-mouseleave="dillahide()">
+          </a>          
+          <div id='headerh1div'>
+           <div>
+            <a href='#/firstpage'>
+             <h1 ng-mouseover="neversleepshow()" ng-mouseleave="neversleephide()"> {{myname}}</h1>
+            </a>
+           </div>
+          </div>
+          
+          <div id='headerh2div'>
+            <div>
+              <h2 id="neversleep" ng-style="{'left': neversleepleft}" > "I never sleep, cause sleep is the cousin of death"</h2>
+              <h2 id="dilla" ng-style="{'left': dillaleft}"> "J Dilla saved my life"</h2>
+            </div>
+          </div>
 
 		<div class="menu-container">
 			<ul class="menu">
-				<li class='litab'><a href="#/yesterday"><img src="images/yesterday.jpg"></a></li>
-				<li class='litab'><a class='qq' href="#">PROJECTS</a>
-					<!-- -->
+				<li class='litab' id="atab"><a  class='qq' href="#/aboutme">AboutMe</a>
+					<!--
+					<ul>
+						<li><a href="#"> introduce</a></li>
+						<li><a href="#"> resume</a></li>
+					</ul>
+					-->
+				</li>
+				<li class='litab' id="ptab"><a class='qq' href="#/projects">Projects</a>
+					<!--
 					<ul>
 						<li><a href="#"> p1</a></li>
 						<li><a href="#"> p2 </a></li>
 						<li><a href="#"> p3</a></li>
 						<li><a href="#"> p4</a></li>
 					</ul>
-					<!-- -->
+					-->
 				</li>
-				<li class='litab'><a  class='qq' href="#">AboutMe</a>
-					<!-- -->
-					<ul>
-						<li><a href="#"> introduce</a></li>
-						<li><a href="#"> resume</a></li>
-					</ul>
-					<!-- -->
-				</li>
-
+				<li class='litab' id="ytab"><a href="#/yesterday"><img src="./images/siteuse/yesterday.jpg"></a></li>
 			</ul>
 		</div>
 	  </div>
     </div>
-   
+
      
    <div class="main">
       <div class="container">
@@ -60,24 +82,28 @@
     <!-- Modules -->
     <script src="javascripts/angularApp.js"></script>
 
-    <!-- Controllers -->
+    <!-- Controllers-->
+    <script src="javascripts/controllers/headerController.js"></script> 
+    <script src="javascripts/controllers/firstpageController.js"></script> 
     <script src="javascripts/controllers/yesterdayController.js"></script>
+    <script src="javascripts/controllers/projectsController.js"></script>
+    <script src="javascripts/controllers/aboutmeController.js"></script>
 
     <!-- Directives -->
     <script src="javascripts/directives/d3Directive.js"></script>
     <script src="javascripts/directives/ytDirective.js"></script>
-    <script src="javascripts/directives/fileModelDirective.js"></script>    
-
-    <!-- Services -->
+    <script src="javascripts/directives/flyDirective.js"></script>
+    <script src="javascripts/directives/slideDirective.js"></script>
+    <script src="javascripts/directives/checkpositionDirective.js"></script>
+    <script src="javascripts/directives/cdDirective.js"></script>
+    <script src="javascripts/directives/theaterDirective.js"></script>
+   
+    <!-- Factories/Services -->
     <script src="javascripts/factories/yesterdayFactory.js"></script>
+    <script src="javascripts/factories/projectFactory.js"></script>
+    <script src="javascripts/factories/mailFactory.js"></script>
     
-    <!-- Other -->
-    <script type="text/javascript">
-    var div_menu = document.getElementById('headithard'); 
-    window.onscroll = function (e) {  
-        if (div_menu)
-            div_menu.style.top = window.pageYOffset + 'px';
-    }   
-    </script>
+    <!-- Other-->
+    
   </body>
 </html>  

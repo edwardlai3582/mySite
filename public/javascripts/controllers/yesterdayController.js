@@ -7,6 +7,7 @@ app.controller('yesterdayController', ['$scope','yFac', function($scope,yFac) {
 $scope.div_show=function(){
   $scope.showform=true;    
 }
+
 //Function to Hide Popup
 $scope.div_hide=function(){
   $scope.showform=false; 
@@ -45,7 +46,7 @@ $scope.addCover=function() {
   $scope.play=false;
   $scope.controlpic=0;
   $scope.availpics=  [
-    "./images/play-circled.png", "./images/pause-circled.png", "./images/replay-circled.png" 
+    "./images/siteuse/play-circled.png", "./images/siteuse/pause-circled.png", "./images/siteuse/replay-circled.png" 
   ];    
   $scope.playpause=function(){
     if($scope.play) {
@@ -84,13 +85,6 @@ $scope.addCover=function() {
     $scope.$broadcast('jump',time);
   }
   
-  $scope.videolength=331;
-  //videoduration
-/*      
-  $scope.$on("videoduration", function(event, data) {
-    $scope.videolength=data;
-  });
-*/
     
   $scope.$on("fromd3", function(event, data) {
     $scope.$broadcast('jump',data);

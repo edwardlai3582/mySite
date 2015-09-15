@@ -1,4 +1,4 @@
-app.directive("d3chart", function($window, $compile) {
+app.directive("d3chart", function($window) {
   return{
     restrict: "E",
     template: "<svg></svg>",
@@ -6,7 +6,6 @@ app.directive("d3chart", function($window, $compile) {
       height:   '@',
       width:    '@',
       chartData:  '=',
-      //videoLength: '=',
       youtubeid:'@'    
     },  
     link: function(scope, elem, attrs){
@@ -16,16 +15,59 @@ app.directive("d3chart", function($window, $compile) {
            var svg = d3.select(rawSvg[0]);
            var videolength=0;
         ////////////////////////
-        /*
-        $.getJSON('http://gdata.youtube.com/feeds/api/videos/'+ scope.youtubeid +'?v=2&alt=jsonc', function(data,status,xhr){
-      var yt_response = data.data, // If you need more video informations, take a look on this response: data.data
-          
-          videolength = yt_response.duration;
-        });
-        */
+        ///*
+   var getJSON = function(url, successHandler, errorHandler) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('get', url, true);
+      xhr.onreadystatechange = function() {
+        var status;
+        var data;
+        // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
+        if (xhr.readyState == 4) { // `DONE`
+          status = xhr.status;
+          if (status == 200) {
+            data = JSON.parse(xhr.responseText);
+            successHandler(data);
+          } else {
+            errorHandler(status);
+          }
+        }
+      };
+      xhr.send();
+    };
+
+    function convert_time(duration) {
+        var a = duration.match(/\d+/g);
+        if (duration.indexOf('M') >= 0 && duration.indexOf('H') == -1 && duration.indexOf('S') == -1) {
+            a = [0, a[0], 0];
+        }
+        if (duration.indexOf('H') >= 0 && duration.indexOf('M') == -1) {
+            a = [a[0], 0, a[1]];
+        }
+        if (duration.indexOf('H') >= 0 && duration.indexOf('M') == -1 && duration.indexOf('S') == -1) {
+            a = [a[0], 0, 0];
+        }
+        duration = 0;
+        if (a.length == 3) {
+            duration = duration + parseInt(a[0]) * 3600;
+            duration = duration + parseInt(a[1]) * 60;
+            duration = duration + parseInt(a[2]);
+        }
+        if (a.length == 2) {
+            duration = duration + parseInt(a[0]) * 60;
+            duration = duration + parseInt(a[1]);
+        }
+        if (a.length == 1) {
+            duration = duration + parseInt(a[0]);
+        }
+        return duration;
+    };
+        
+ 
+        //*/
         
         
-                videolength= 331;//scope.videoLength;
+                //videolength= 331;//scope.videoLength;
      
                 //Width and height
                 var w = scope.width;
@@ -39,16 +81,12 @@ app.directive("d3chart", function($window, $compile) {
         
         var config = {"avatar_size" : 40}
      
- //Create the Scale we will use for the Axis
- var axisScale = d3.scale.linear()
-                          .domain([0, videolength])
-                          .range([padding, w - padding ]);
+ 
         
  var backbar; 
        
 
-//Create the Axis
-var xAxis = d3.svg.axis().scale(axisScale).ticks(videolength-2);
+
         
         
 scope.render = function(albumdata) {
@@ -58,7 +96,15 @@ scope.render = function(albumdata) {
 //Clear All
 svg.selectAll("*").remove();  
 
-  backbar= svgContainer.append("rect")
+    //Create the Scale we will use for the Axis
+ var axisScale = d3.scale.linear()
+                          .domain([0, videolength])
+                          .range([padding, w - padding ]);
+    
+//Create the Axis
+var xAxis = d3.svg.axis().scale(axisScale).ticks(videolength-2);
+    
+   backbar= svgContainer.append("rect")
   .attr("x",padding)
   .attr("y",h/2)
   .attr("width",0)
@@ -107,7 +153,7 @@ var circle=  svgContainer.selectAll("circle").data(albumdata).enter().append("ci
        
       scope.$on("changelength", function (event, data) { 
         //.transition().duration(3000).ease("linear")
-           backbar.transition().ease("linear").attr("width",data*(w - padding*2)/(videolength-1)); 
+           backbar.transition().ease("linear").duration(1000).attr("width",data*(w - padding*2)/(videolength-1)); 
           console.log("changin width");
       });   
        
@@ -117,7 +163,16 @@ scope.$watch('chartData', function(){
 });
 */
 scope.$watchCollection('chartData', function(newNames, oldNames) {
-  scope.render(scope.chartData);
+    getJSON('https://www.googleapis.com/youtube/v3/videos?id='+scope.youtubeid+'&key=AIzaSyCi-Ruza-tVs3tRqRayXwCIP-neGKBENDw&part=contentDetails', function(data) {
+        videolength=convert_time(data.items[0].contentDetails.duration); 
+        console.log("video length="+videolength); 
+        
+        scope.render(scope.chartData);
+}, function(status) {
+  alert('Something went wrong.');
+});  
+    
+  
 });
         
    
