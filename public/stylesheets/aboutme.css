@@ -438,11 +438,17 @@ height: 20px;
 }
 
 #mailform #mailsubmit{
+   border: 0;    
    width: 100px;
    height: 30px;
    font-weight: bold;
    background-color: aliceblue;
    cursor: pointer;
+}
+
+#mailform #mailsubmit:hover{
+   background-color: black;
+   color:aliceblue;    
 }
 
 #mailform div{
